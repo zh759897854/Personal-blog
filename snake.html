@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style type="text/css">
+	body{
+		margin:0;
+		background: pink;
+	}
+	#snake{
+		width:800px;
+		border:2px solid #000;
+		margin:30px auto;
+	}
+	.info{
+		height:60px;
+		border-bottom: 2px solid #000;
+		text-align: center;
+		font:28px/60px "宋体";
+	}
+	#map{
+		border-bottom: 2px solid #000;
+	}
+	#map table{
+		margin:0 auto;
+		border: 1px solid #000;
+	}
+	#map table td{
+		width:22px;
+		height: 22px;
+		border:1px solid yellow;
+		background: #fff;
+	}
+	#map table td.snake{
+		background: red;
+	}
+	#map table td.food{
+		background: green;
+	}
+	#map table td.skate{
+		background:#20F5FB;
+	}
+	#map table td.break{
+		background: #EBFF1D;
+	}
+	#map table td.block{
+		background: #000;
+	} 
+	.help{
+		height: 50px;
+		display: flex;
+		border-bottom: 1px solid #000;
+	}
+	.btn{
+		height: 50px;
+		position: relative;
+	}
+	.btn input{
+		position: absolute;
+		left:35%;
+		top:10%;
+		margin:0;
+		padding:0;
+		border:none;
+		width:30%;
+		height:80%;
+		background: rgba(0,0,0,.6);
+		color:#fff;
+		font:35px/40px "宋体";
+		outline: none;
+	}
+	.left{
+		width:75%;
+		display: flex;
+		border-right: 1px solid #000;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.right{
+		flex:1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.right span{
+		display: inline-block;
+		font:25px/50px "arial";
+	}
+	.left div{
+		height:50px;
+		display: flex;
+		align-items: center;
+		font:25px/50px "arial";
+	}
+	.left div span{
+		width:22px;
+		height: 22px;
+		display: inline-block;
+		border:1px solid #FBE2F9;
+		background: blue;
+		margin-right: 5px;
+
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		// 变量的声明
+		var mapX = 20,mapY = 20;
+		var snakeData = creatArr(mapX,mapY);
+		var mapData = creatArr(mapX,mapY);
+		var snake = [];
+		var len = 3;
+		var speed = 10;
+		var snakeTimer = null;
+		var skateTimer = [];
+		var breakTimer = [];
+		var direction = 39;
+		var flag = true;
+		var score = document.getElementById('score');
+		var btn = document.getElementsByTagName('input')[0];
+		creatMap(mapX,mapY);
+		btn.onclick = start;
+		function start(){
+			this.onclick = null;
+			clear();
+			initSnake();
+			walk();
+			step();
+			addObj("food");
+			addToy();
+		}
+		
+		// 生成地图
+		function creatMap(x,y){
+			var map = document.getElementById('map');
+			var table = document.createElement('table');
+			table.cellPadding = table.cellSpacing = 0;
+			var tbody = table.createTBody();
+			for(var i=0;i<x;i++){
+				var tr = document.createElement('tr');
+				for(var j=0;j<y;j++){
+					var td = document.createElement('td');
+					snakeData[i][j] = tr.appendChild(td);
+				}
+				tbody.appendChild(tr);
+			}
+			table.appendChild(tbody);
+			map.appendChild(table);
+		}
+		// 创建二维数组
+		function creatArr(x,y){
+			var arr = new Array(x);
+			for(var i=0;i<y;i++){
+				arr[i] = new Array(y) ;
+			}
+			return arr;
+		}
+		// 设定范围
+		function scope(startX,stratY,endX,endY){
+			startX = startX || 0;
+			stratY = stratY || 0;
+			endX = endX || mapX - 1;
+			endY = endY || mapY - 1;
+			var p = [];
+			var	x = rP([startX,endX]);
+			var	y = rP([stratY,endY]);
+			p.push(x,y);
+			// 用来判断这个点生成的位置是否有物品，如果有就重复执行上面的代码
+			if(mapData[x][y]){
+				return scope(startX,stratY,endX,endY);
+			}
+			return p;
+		}
+		// 编写随机函数
+		function rP(arr){
+			var max = Math.max.apply(null,arr);
+			var min = Math.min.apply(null,arr);
+			return Math.round(Math.random()*(max-min)+min);
+		}
+		// 绘制初始化蛇
+		function initSnake(){
+			// 找到一个随机的点，但是这个点必须符合指定的范围，不能撞墙，也不能截取
+			var p = scope(0,2,mapX-1,parseInt(mapY/2));
+			for(var i=0;i<len;i++){
+				var x = p[0]; // 某一行
+				var y = p[1] - i; // 某一行中紧挨着的三个td
+				snake.push([x,y]);// 放到蛇的数组中，数组会出现紧挨着的3个点
+				snakeData[x][y].className = 'snake';// 绘制蛇
+				mapData[x][y] = 'snake';// 让蛇出现在地图中
+			}
+		}
+		// 让蛇动起来
+		function walk(){
+			clearInterval(snakeTimer);
+			snakeTimer = setInterval(step,5000/speed);
+		}
+		// 控制蛇的运动
+		function step(){
+			var headX = snake[0][0];
+			var headY = snake[0][1];
+			switch(direction){
+				case 37:
+					headY -= 1;
+				break;
+				case 38:
+					headX -= 1;
+				break;
+				case 39:
+					headY += 1;
+				break;
+				case 40:
+					headX += 1;
+				break;
+			};
+			// 撞自己或者撞墙了或者吃毒药了
+			if(headX <0 || headX > mapX-1 || headY <0 || headY >mapY -1 || mapData[headX][headY] =="snake" || mapData[headX][headY] =="block" ){
+				clearInterval(snakeTimer);
+				skateTimer.forEach((item,i) =>{
+					clearTimeout(item);	
+				});
+				breakTimer.forEach((item,i) =>{
+					clearTimeout(item);	
+				});
+				alert("GameOver");
+				btn.onclick = start;
+				return;
+			}
+			if(len%4 == 0 && len <55 && mapData[headX][headY] == "food"){
+				speed += 5;
+				walk();
+			}
+			if(len%7 == 0 && len <60 && mapData[headX][headY] == "food"){
+				addObj('block');
+			}
+			if(mapData[headX][headY] == "skate"){
+				speed += 15;
+				walk();
+			}
+			if(mapData[headX][headY] == "break"){
+				speed = 10;
+				walk();
+			}
+			if(mapData[headX][headY] == "food"){
+				addObj('food');
+				mapData[headX][headY] = true;
+			}
+			if(!mapData[headX][headY]){
+				var lastX = snake[snake.length-1][0];
+				var lastY = snake[snake.length-1][1];
+				snakeData[lastX][lastY].className = '';
+				snake.pop();
+				mapData[lastX][lastY] = false;
+			}
+			snake.unshift([headX,headY]);
+			snakeData[headX][headY].className = 'snake';
+			mapData[headX][headY] = 'snake';
+			len = snake.length;
+			score.innerHTML = (len -3)*10;
+			flag = true;
+		}
+		// 控制蛇的方向
+		document.onkeydown = function(e){
+			var e = e || window.event;
+			if(!flag){
+				return;
+			}
+			if(e.keyCode > 36 && e.keyCode <41 && Math.abs(e.keyCode-direction) != 2){
+				direction = e.keyCode;
+			}
+			return false;
+		}
+		// 添加物品
+		function addObj(name){
+			var p = scope();
+			snakeData[p[0]][p[1]].className = name;
+			mapData[p[0]][p[1]] = name;
+		}
+		// 随机添加加速物品或者减速物品
+		function addToy(){
+			var skateNum = rP([6,10]);
+			var breakNum = rP([4,6]);
+			for(var i=0;i<skateNum;i++){
+				skateTimer.push(setTimeout(function(){
+					addObj('skate');
+				},rP([10000,120000])))
+			}
+			for(var i=0;i<breakNum;i++){
+				breakTimer.push(setTimeout(function(){
+					addObj('break');
+				},rP([10000,160000])))
+			}
+		}
+		// 清除画布
+		function clear(){
+			snakeData.forEach((item,i) =>{
+				item.forEach ((item,i) =>{
+					item.className ='';
+				})
+			})
+			direction = 39;
+			snake = [];
+			len = 3;
+			speed = 10;
+			score.innerHTML = 0;
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="snake">
+		<div class="info">贪吃蛇</div>
+		<div id="map">
+			<!-- <table cellpadding="0" cellspacing="0">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table> -->
+		</div>
+		<div class="help">
+			<div class="left">
+				<div><span></span>food</div>
+				<div><span></span>slowly</div>
+				<div><span></span>quickly</div>
+				<div><span></span>poison</div>
+			</div>
+			<div class="right">
+				<span>战绩：<i id="score">0</i>分</span>
+			</div>
+		</div>
+		<div class="btn">
+			<input type="button" value=" Let's  Go">
+		</div>
+	</div>
+	<script type="text/javascript">
+		(function(){
+			var colors = ["green","#EBFF1D","#20F5FB","#000"];
+			var spans = document.querySelectorAll('.left span');
+			for(var i=0;i<spans.length;i++){
+				spans[i].style.background = colors[i];
+			}
+		})()
+	</script>
+</body>
+</html>
