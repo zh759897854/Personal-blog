@@ -1,0 +1,972 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,user-scalable=no"/>
+<title>哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~ - bilibili</title>
+<script>
+ fn();
+window.addEventListener("resize",fn);
+function fn() {
+	var html = document.querySelector("html");
+	var width = html.getBoundingClientRect().width;
+	html.style.fontSize = width/15 + "px";  
+}
+</script>
+<style> 
+@keyframes move {
+	0%{
+		left: 0;
+	}
+	20% {
+		left: -15rem;
+	}
+	40%{
+		left: -15rem;
+	}
+	60%{
+		left: -30rem;
+	}
+	80%{
+		left: -30rem;
+	}
+	100%{
+		left: -30rem;
+	}
+}
+.banner,.banner1,.banner2 {
+	float: left;
+}
+.banner1 {
+	width: 15rem;
+	height: 4.44rem;
+	background: url(img/banner1.png) no-repeat;
+	background-size: 15rem 4.44rem;
+}
+.banner2 {
+	width: 15rem;
+	height: 4.44rem;
+	background: url(img/banner.png) no-repeat;
+	background-size: 15rem 4.44rem;
+}
+.bigbox {
+	width: 15rem;
+	height: 4.44rem;
+	position: relative;
+	overflow: hidden;
+}
+.bannermove {
+	width: 300%;
+	height: 4.44rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	animation: 8s 2s move infinite;
+}
+html,body {
+	margin: 0;
+	background: #f4f4f4;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+h2,p {
+	margin: 0;
+	padding: 0;
+}
+a,
+input,
+button {
+	-webkit-appearance: none;
+}
+input,
+button {
+	border-radius: 5px;
+}
+a {
+	font-size: 0;
+	text-decoration: none;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+.box:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+#h2 {
+	width: 100%;
+	height: 1.2rem;
+	background: #fb7299;
+	box-sizing: border-box; 
+	font: .6rem/1rem "宋体";
+	padding: 0 3.8rem 0 3.8rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.section {
+	height: 100%;
+	overflow: auto;
+	margin-top: 1.2rem;
+}
+#h2 a {
+	display: inline-block;
+	width: 1.6rem;
+	font: .6rem/1rem "微软雅黑";
+	color: #fff;
+	margin-top: -.5rem;
+	text-align: center;
+}
+#h2 .tuijian {
+	border-bottom: 1px solid #fff;
+	padding: 0 .3rem 0 .3rem;
+}
+#h2 a:hover {
+	border-bottom: 1px solid #fff;
+}
+.banner {
+	width: 15rem;
+	height: 4.44rem;
+	background: url(img/banner.png) no-repeat;
+	background-size: 15rem 4.4rem;
+}
+.mintext {
+	padding: 0 .48rem 0 .48rem;
+	overflow: scroll;
+}
+.nav {
+	font: .54rem/.54rem "微软雅黑";
+}
+.remen {
+	float: left;
+	color: #333333;
+	margin-left: .2rem;
+	margin-top: .1rem;
+}
+.paihang {
+	display: inline-block;
+	float: left;
+	color: #ffc133;
+	margin-left: .15rem;
+	margin-top: .1rem;
+}
+.paihang a  {
+	display: inline-block;
+	font: .54rem/.54rem "微软雅黑";
+	color: #ffc133;
+}
+.paihang span {
+	color: #cccccc;
+	font-weight: bold;
+	margin-left: .2rem;
+}
+.huangguan {
+	width: .8rem;
+	float: left;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -5.1rem;
+	background-size: .8rem 6rem;
+}
+.jieti {
+	width: .8rem;
+	float: left;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -4.42rem;
+	background-size: .8rem 6rem;
+	margin-left: 7.5rem;
+}
+.nav {
+	margin-top: .9rem;
+	margin-bottom: .6rem;
+}
+.img {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.24rem;
+	background: url(img/spring.gif) no-repeat ;
+	background-size: 6.9rem 70rem;
+}
+.img1 {
+	background: url(img/spring.gif) no-repeat 0 -4.32rem;
+	background-size: 6.9rem 70rem;
+}
+.img2 {
+	background: url(img/spring.gif) no-repeat 0 -8.74rem;
+	background-size: 6.9rem 70rem;
+}
+.img3 {
+	background: url(img/spring.gif) no-repeat 0 -13.18rem;
+	background-size: 6.9rem 70rem;
+}
+.img4 {
+	background: url(img/spring.gif) no-repeat 0 -17.58rem;
+	background-size: 6.9rem 70rem;
+	margin-top: .8rem;
+}
+.mg5 {
+	background: url(img/spring.gif) no-repeat 0 -21.96rem;
+	background-size: 6.9rem 70rem;
+}
+li {
+	width: 6.8rem;
+	margin-bottom: .25rem;
+	position: relative;
+}
+ul {
+	font-size: 0;
+}
+.word {
+	display: inline-block;
+	font: .5rem/.76rem Arial,"宋体";
+	color: #212121;
+	margin-top: .2rem;
+}
+.part1,.part2 {
+	float: left;
+}
+.part2 {
+	margin-left: .4rem;
+}
+.play,.text,.text1,.text2 {
+	position: absolute;
+	font: .4rem/.4rem "宋体";
+}
+.play {
+	display: inline-block;
+	width: .53rem;
+	height: .4rem;
+	background: url(img/play.png) no-repeat;
+	top: 3.64rem;
+	left: .32rem;
+}
+.text {
+	display: inline-block;
+	width: .53rem;
+	height: .4rem;
+	background: url(img/text.png) no-repeat;
+	top: 3.64rem;
+	left: 3.4rem;
+}
+.text1 {
+	display: inline-block;
+	top: 3.62rem;
+	left: 1.1rem;
+	color: #fff;
+}
+.text2 {
+	display: inline-block;
+	top: 3.62rem;
+	left: 4.16rem;
+	color: #fff;
+}
+.shexiang {
+	float: left;
+	width: .6rem;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -3.76rem;
+	background-size: .8rem 6rem;
+}
+.look {
+	margin-left: 6.1rem;
+}
+.look a  {
+	display: inline-block;
+	font: .54rem/.54rem "微软雅黑";
+	color: #a3a3a3;
+	margin-top: .1rem;
+	position: relative;
+}
+.look .fuhao {
+	display: inline-block;
+	width: .8rem;
+	height: .7rem;
+	border-radius: 50%;
+	background: #cccccc;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	top: -.2rem;
+	left: 7rem;
+	color: #fff;
+	font-weight: bold;
+	padding-top: .1rem;
+}
+.look .sanling {
+	display: inline-block;
+	color: #fb779d;
+}
+.img6 {
+	background: url(img/spring.gif) no-repeat 0 -26.4rem;
+	background-size: 6.9rem 70rem;
+}
+.img7 {
+	background: url(img/spring.gif) no-repeat 0 -35.18rem;
+	background-size: 6.9rem 70rem;
+}
+.img8 {
+	background: url(img/spring.gif) no-repeat 0 -30.76rem;
+	background-size: 6.9rem 70rem;
+}
+.img9 {
+	background: url(img/spring.gif) no-repeat 0 -39.6rem;
+	background-size: 6.9rem 70rem;
+}
+.word1 {
+	display: inline-block;
+	font: .5rem/.8rem "微软雅黑";
+	text-indent: 2rem;
+	color: #333333;
+	margin-top: .2rem;
+}
+.word2 {
+	display: inline-block;
+	font: .5rem/.5rem "微软雅黑";
+	margin-left: .3rem;
+	color: #afafaf;
+}
+.tongji {
+	display: inline-block;
+	width: 1.72rem;
+	height: .6rem;
+	border: 1px solid #cdcdcd;
+	background: #e7e7e7;
+	border-radius: .1rem;
+	font: .5rem/.6rem "微软雅黑";
+	color: #333333;
+	text-align: center;
+}
+.banyuan {
+	display: inline-block;
+	width: 1.64rem;
+	height: .8rem;
+	background: url(img/sama1.png) no-repeat;
+	background-size: 1.64rem .8rem;
+}
+.banyuan1 {
+	display: inline-block;
+	width: 1.64rem;
+	height: .8rem;
+	background: url(img/sama1.png) no-repeat;
+	background-size: 1.64rem .8rem;
+}
+.banyuan2 {
+	display: inline-block;
+	width: 1.64rem;
+	height: .8rem;
+	background: url(img/pidan1.png) no-repeat;
+	background-size: 1.64rem .8rem;
+}
+.banyuan3 {
+	display: inline-block;
+	width: 1.64rem;
+	height: .8rem;
+	background: url(img/juzi1.png) no-repeat;
+	background-size: 1.64rem .8rem;
+}
+.banyuan,.banyuan1,.banyuan2,.banyuan3 {
+	position: absolute;
+	top: 4.28rem;
+	left: .16rem;
+
+}
+.word3 {
+	display: inline-block;
+	font: .5rem/.7rem "宋体";
+	color: #222222;
+	margin-top: .2rem;
+}
+.playvideo {
+	float: left;
+	display: inline-block;
+	width: .74rem;
+	height: .78rem;
+	background: url(img/spring-title.gif) no-repeat 0 -2.92rem;
+	background-size: .8rem 6rem;
+}
+.moreju {
+	float: left;
+	font: .55rem/.55rem "微软雅黑";
+	color: #a3a3a3;
+	margin-top: .2rem;
+	margin-left: 8rem;
+}
+.moreju a {
+	font: .55rem/.55rem "微软雅黑";
+	color: #a3a3a3;
+}
+.img-1 {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.28rem;
+	background: url(img/spring.gif) no-repeat 0 -44rem;
+	background-size: 6.9rem 70rem;
+}
+.img-2 {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.28rem;
+	background: url(img/spring.gif) no-repeat 0 -48.36rem;
+	background-size: 6.9rem 70rem;
+	margin-top: .5rem;
+}
+.img-3 {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.28rem;
+	background: url(img/spring.gif) no-repeat 0 -52.76rem;
+	background-size: 6.9rem 70rem;
+}
+.img-4 {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.28rem;
+	background: url(img/spring.gif) no-repeat 0 -57.14rem;
+	background-size: 6.9rem 70rem;
+	margin-top: .5rem;
+}
+.everyday {
+	float: left;
+	display: inline-block;
+	width: 6.78rem;
+	height: 2rem;
+	background: url(img/everyday.png) no-repeat;
+	background-size: 6.78rem 2rem;
+	margin-top: .2rem;
+}
+.serach {
+	float: left;
+	display: inline-block;
+	width: 6.78rem;
+	height: 2rem;
+	background: url(img/serach.png) no-repeat;
+	background-size: 6.78rem 2rem;
+	margin-left: .4rem;
+	margin-top: .2rem;
+}
+.tv {
+	float: left;
+	display: inline-block;
+	width: .64rem;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -2.26rem;
+	background-size: .8rem 6rem;
+}
+.houer {
+	background: url(img/spring.gif) no-repeat 0 -61.56rem;
+	background-size: 6.9rem 70rem;
+}
+.daojian {
+	background: url(img/spring-2.gif) no-repeat;
+	background-size: 6.9rem 70rem;
+}
+.miaosu {
+	background: url(img/spring-2.gif) no-repeat 0 -4.44rem;
+	background-size: 6.9rem 70rem;
+}
+.shoushu {
+	background: url(img/spring-2.gif) no-repeat 0 -8.88rem;
+	background-size: 6.9rem 70rem;
+}
+.youxi {
+	float: left;
+	display: inline-block;
+	width: .6rem;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat;
+	background-size: .8rem 6rem;
+}
+.fengyun {
+	background: url(img/spring-2.gif) no-repeat  0 -13.3rem;
+	background-size: 6.9rem 70rem;
+}
+.hongsheng {
+	background: url(img/spring-2.gif) no-repeat 0 -26.5rem;
+	background-size: 6.9rem 70rem;
+}
+.saolei {
+	background: url(img/spring-2.gif) no-repeat 0 -17.7rem;
+	background-size: 6.9rem 70rem;
+}
+.lushi {
+	background: url(img/spring-2.gif) no-repeat 0 -22.08rem;
+	background-size: 6.9rem 70rem;
+}
+.zeze {
+	display: inline-block;
+	width: 14rem;
+	height: 4.48rem;
+	background: url(img/zeze.png) no-repeat;
+	background-size: 15rem 4.48rem;
+	margin-top: .6rem;
+	margin-bottom: .6rem;
+}
+.guichu {
+	float: left;
+	display: inline-block;
+	width: .7rem;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -1rem;
+	background-size: .8rem 6rem;
+}
+.doubi {
+	display: inline-block;
+	width: 7rem;
+	height: 4.28rem;
+	background: url(img/spring-2.gif) no-repeat 0 -30.92rem;
+	background-size: 6.9rem 70rem;
+}
+.jinkela {
+	display: inline-block;
+	width: 7rem;
+	height: 4.28rem;
+	background: url(img/spring-2.gif) no-repeat 0 -44.12rem;
+	background-size: 6.9rem 70rem;
+	margin-top: 1.1rem;
+}
+.xizaojian {
+	display: inline-block;
+	width: 7rem;
+	height: 4.28rem;
+	background: url(img/spring-2.gif) no-repeat 0 -35.32rem;
+	background-size: 6.9rem 70rem;
+}
+.dnf {
+	display: inline-block;
+	width: 7rem;
+	height: 4.28rem;
+	background: url(img/spring-2.gif) no-repeat 0 -39.72rem;
+	background-size: 6.9rem 70rem;
+}
+.moive {
+	float: left;
+	width: .6rem;
+	height: .6rem;
+	background: url(img/spring-title.gif) no-repeat 0 -.3rem;
+	background-size: .8rem 6rem;
+}
+.choubi {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.3rem;
+	background: url(img/spring-2.gif) no-repeat 0 -48.54rem;
+	background-size:  6.9rem 70rem;
+}
+.zisha {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.3rem;
+	background: url(img/spring-2.gif) no-repeat 0 -61.78rem;
+	background-size:  6.9rem 70rem;
+}
+.xinhaicheng {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.3rem;
+	background: url(img/spring-2.gif) no-repeat 0 -52.96rem;
+	background-size:  6.9rem 70rem;
+}
+.huazhuang {
+	display: inline-block;
+	width: 6.8rem;
+	height: 4.3rem;
+	background: url(img/spring-2.gif) no-repeat 0 -57.36rem;
+	background-size:  6.9rem 70rem;
+}
+.footer {
+	width: 100%;
+	height: 2rem;
+	border-top: 1px solid #dbdbdb;
+	background: #ffffff;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+}
+.img-foot {
+	display: inline-block;
+	width: .83rem;
+	height: .8rem;
+	background: url(img/spring-bottom.gif) no-repeat ;
+	background-size: 4.4rem .8rem;
+	margin-top: .4rem;
+}
+.img-foot1 {
+	display: inline-block;
+	width: .9rem;
+	height: .9rem;
+	background: url(img/spring-bottom.gif) no-repeat -.83rem 0;
+	background-size: 4.4rem .9rem;
+	margin-top: .4rem;
+}
+.img-foot2 {
+	display: inline-block;
+	width: .85rem;
+	height: .86rem;
+	background: url(img/spring-bottom.gif) no-repeat -1.69rem 0 ;
+	background-size: 4.4rem .86rem;
+	margin-top: .4rem;
+}
+.img-foot3 {
+	display: inline-block;
+	width: .84rem;
+	height: .8rem;
+	background: url(img/spring-bottom.gif) no-repeat -2.55rem 0;
+	background-size: 4.4rem .8rem;
+	margin-top: .4rem;
+}
+.img-foot4 {
+	display: inline-block;
+	width: .84rem;
+	height: .88rem;
+	background: url(img/spring-bottom.gif) no-repeat -3.4rem 0;
+	background-size: 4.4rem .88rem;
+	margin-top: .4rem;
+}
+.word-foot {
+	display: inline-block;
+	font: .38rem/.76rem "宋体";
+	color: #929292;
+}
+.word-foot1 {
+	color: #e57d9c;
+}
+.footer li {
+	float: left;
+	margin-left: 2rem;
+	width: 1rem;
+}
+.footer .li1 {
+	margin-left: 1rem;
+}
+.last {
+	margin-bottom: 1.2rem;
+}
+.lastbottom {
+	margin-bottom: 2rem;
+}
+</style>
+</head>
+<body>
+	<h2 id="h2"><a class="zhibo" href="#">直播</a> <a class="tuijian" href="#">推荐</a> <a class="fanju" href="#">番剧</a>
+	</h2>
+	<div class="section">
+		<div class="bigbox">
+		 	<div class="bannermove box">
+				<div class="banner"></div>
+				<div class="banner1"></div>
+				<div class="banner2"></div>
+			</div>
+		</div>
+		<section class="mintext">
+			<nav class="nav box">
+				<div class="huangguan"></div>
+				<p class="remen">热门推荐</p>
+				<div class="jieti"></div>
+				<p class="paihang"><a href="#">排行榜<span>&gt;</span></a></p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img"></span>
+							<span class="word">【拂林坊】中英泰三国反应大揭秘：留恋是个什么鬼</span>
+						</a>
+						<a href="#" class="play"></a>
+						<span class="text1">48.2万</span>
+						<span class="text"></span>
+						<span class="text2">1.5万</span>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img1"></span>
+							<span class="word">【全明星】真正的梦想【妖精的尾巴top15】</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img2"></span>
+							<span class="word">【排行向】二次元"十"大最受欢迎的马尾妹子！老司机</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="img img3"></span>
+							<span class="word">吃货老外在西安</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img4"></span>
+							<span class="word">西九龙style-致那些年我们追过的西九龙总区</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img5"></span>
+							<span class="word">【补番推荐】这些年各种有趣的后宫动漫</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<nav class="nav box">
+				<div class="shexiang"></div>
+				<p class="remen">正在直播</p>
+				<p class="look"><a href="#">当前<span class="sanling">3027</span>个直播，进去看看<span class="fuhao">&gt;</span></a>
+				</p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img img6"></span>
+							<span class="word1">米糯喵酱SAMAa</span><br/>
+							<span class="tongji">4634</span>
+							<span class="word2">*糯米*看片~</span>
+							<span class="banyuan"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img7"></span>
+							<span class="word1">请叫我圆叔</span><br/>
+							<span class="tongji">1221</span>
+							<span class="word2">巴厘岛了</span>
+							<span class="banyuan1"></span>
+						</a>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="img img8"></span>
+							<span class="word1">皮w蛋</span><br/>
+							<span class="tongji">5485</span>
+							<span class="word2">皮蛋萌萌嗒(*°∀°)</span>
+							<span class="banyuan2"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img img9"></span>
+							<span class="word1">橘子拿来u</span><br/>
+							<span class="tongji">33</span>
+							<span class="word2">直播测…</span>
+							<span class="banyuan3"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<nav class="nav box">
+				<div class="playvideo"></div>
+				<p class="remen">番剧推荐</p>
+				<p class="moreju">更多番剧<a href="#">&gt;</a></p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img-1"></span>
+							<span class="word3">哄伤骑士X</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-2"></span>
+							<span class="word3">不愉快的妖怪庵</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="img-3"></span>
+							<span class="word3">NEW GAME</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-4"></span>
+							<span class="word3">腐男子高校生活</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box suoyin">
+				<span class="everyday"></span>
+				<span class="serach"></span>
+			</div>
+			<nav class="nav box">
+				<div class="tv"></div>
+				<p class="remen">动画区 </p>
+				<p class="moreju">更多动画<a href="#">&gt;</a></p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img-1 houer"></span>
+							<span class="word3">【哔哩哔哩独家】最后的24小时 让你体验不一样的时间</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-2 daojian"></span>
+							<span class="word3">【澄心动漫速报】《刀剑神域 》剧场版有望明年上映</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="img-3 miaosu"></span>
+							<span class="word3">【木鱼微剧场】几分钟看完《秒速五厘米》</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-4 shoushu"></span>
+							<span class="word3">【东方手书剧场】飞不了的巫女</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<nav class="nav box">
+				<div class="youxi"></div>
+				<p class="remen">游戏区 </p>
+				<p class="moreju">更多游戏<a href="#">&gt;</a></p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img-1 fengyun"></span>
+							<p class="word3">【花少北】遭遇史上最猎奇恋人 带你嗨翻天</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-2 hongsheng"></span>
+							<p class="word3">逆风笑|抽风绑个红绳勒死你 智障姐弟除魔记</p>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="img-3 saolei"></span>
+							<p class="word3">（叫你玩扫雷）一个一点都不浪费生命的扫雷初级教学</p>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-4 lushi"></span>
+							<p class="word3">【炉石传说】天天素材库 第17期</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<span class="zeze"></span>
+			<nav class="nav box">
+				<div class="guichu"></div>
+				<p class="remen">鬼畜区 </p>
+				<p class="moreju">更多鬼畜<a href="#">&gt;</a></p>
+			</nav>
+			<div class="box">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="img-1 doubi"></span>
+							<p class="word3">【剧毒】冰冰棒 4</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-2 jinkela"></span>
+							<p class="word3">【金克拉】干物妹 小埋ED</p>
+					</li>
+				</ul>
+				<ul class="part2">
+					<li>
+						<a href="#">
+							<span class="xizaojian"></span>
+							<p class="word3">【新人第一发♂】更衣室的决♂战/p>
+					</li>
+					<li>
+						<a href="#">
+							<span class="img-4 dnf"></span>
+							<p class="word3">【鬼畜 地下城】地下城与勇士主题曲 风一样的男子</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<nav class="nav box">
+				<div class="moive"></div>
+				<p class="remen">电影区 </p>
+				<p class="moreju">更多电影<a href="#">&gt;</a></p>
+			</nav>
+			<div class="box lastbottom">
+				<ul class="part1">
+					<li>
+						<a href="#">
+							<span class="choubi"></span>
+							<span class="word3">【我来说电影】【刘老师】逆天吐槽《亲别怕》</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="zisha"></span>
+							<span class="word3">【中字】国外成人看电影《自杀小分队》预告片</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="part2 last">
+					<li>
+						<a href="#">
+							<span class="xinhaicheng"></span>
+							<span class="word3">【720-P新海诚】《新海诚》她和她的猫</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="huazhuang"></span>
+							<span class="word3">【我来说电影】五毛钱化妆特效 药丸</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<footer class="footer box">
+			<ul>
+				<li class="li1">
+					<span class="img-foot"></span><br/>
+					<span class="word-foot word-foot1">首页</span>
+				</li>
+				<li >
+					<span class="img-foot1"></span><br/>
+					<span class="word-foot">分区</span>
+				</li>
+				<li >
+					<span class="img-foot2"></span><br/>
+					<span class="word-foot">关注</span>
+				</li>
+				<li >
+					<span class="img-foot3"></span><br/>
+					<span class="word-foot">发现</span>
+				</li>
+				<li >
+					<span class="img-foot4"></span><br/>
+					<span class="word-foot">我的</span>
+				</li>
+			</ul>
+		</footer>
+	</div>
+</body>
+</html>
