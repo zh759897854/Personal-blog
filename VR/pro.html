@@ -61,7 +61,7 @@
 			left: 620px;
 			top: 470px; 
 			z-index: 3;
-			transition: 1s;
+			transition: 1000000s;
 		}
 		#prtop2 {
 			position: absolute;
@@ -167,6 +167,13 @@
 			left: 0;
 			top: 0;
 		}
+		#zuobiao img {
+			z-index: 4;
+		}
+		.maliquan {
+			position: absolute;
+			transition: 1s;
+		}
 	</style>
 </head>
 <body>
@@ -217,10 +224,38 @@
 	<script src="js/miaov.js"></script>
 	<script src="js/miaov.js"></script>
 	<script>
-		$("#prtop1").css("transform","rotateZ("+"360deg"+")");
+		ab();
+		function ab() {
+			$("#prtop1").css("transform","rotateZ("+"36000000"+"deg)");
+		}
 //		------------------------------------------------------------------------play
-		$("#gong1").mouseover(function() {
-			
+		$("#dong1").mouseover(function() {
+			$(".gongimg1").css("left","5px").css("top","5px");
+			$(".gongimg2").css("right","5px").css("top","5px");
+			$(".gongimg3").css("left","5px").css("bottom","5px");
+			$(".gongimg4").css("right","5px").css("bottom","5px");			
+		})
+		$("#dong1").mouseout(function() {
+			$(".gongimg1").css("left","0px").css("top","0px");
+			$(".gongimg2").css("right","0px").css("top","0px");
+			$(".gongimg3").css("left","0px").css("bottom","0px");
+			$(".gongimg4").css("right","0px").css("bottom","0px");			
+		})
+		$("#dong2").mouseover(function() {
+			$(".dingweiquan").stop().animate({
+				top: "-5px"
+			},"swing")
+		})
+		$("#dong2").mouseout(function() {
+			$(".dingweiquan").stop().animate({
+				top: "0px"
+			},"swing")
+		})
+		$("#dong3").mouseover(function() {
+			$(".maliquan").css("transform","rotateZ("+"720"+"deg)")
+		})
+		$("#dong3").mouseout(function() {
+			$(".maliquan").css("transform","rotateZ("+"0"+"deg)")
 		})
 //		-------------------------------------------------------------------canvas波浪
 		var canvas = document.getElementById('canvas');
