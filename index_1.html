@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>张皓的Blog</title>
+<style>
+body {
+	background: #18191e;
+	height: 100%;
+	margin: 0;
+}
+#star {
+	width: 600px;
+	height: 2px;
+	border: 1px solid #535353;
+	margin: 0 auto;
+	margin-top: 300px;
+	border-radius: 3px;
+	position: relative;
+}
+#loading {
+	width: 0px;
+	height: 2px;
+	border-radius: 3px;
+	background: #535353;
+}
+#loaddrgon {
+	position: absolute;
+	top: -43px;
+	left: -25px;
+	z-index: 1000;
+}
+/*-----------------------------------star---------------------------*/
+#topimg {
+	position: fixed;
+	width: 1440px;
+	height: 852px;
+	vertical-align: top;
+	left: 0;
+	top: 0;
+}
+/*--------------------------------topimg----------------------------------------*/
+#sidenav {
+	position: fixed;
+	opacity: .8;
+	right: 0;
+	top: 10%;
+	z-index: 1000;
+}
+#sidenav:hover {
+	opacity: 1;
+}
+#mean {
+	position: fixed;
+	left: 5%;
+	top: 10%;
+	z-index: 1000;
+}
+#mean:hover {
+	opacity: .7;
+}
+a {
+	text-decoration: none;
+}
+#scorlldown {
+	position: absolute;
+	left: 43%;
+	bottom: 30px;
+}
+#mean_nav {
+	width: 200px;
+	height: 350px;
+	position: fixed;
+	left: -205px;
+	top: 20%;
+	z-index: 1000;
+}
+#mean_nav a {
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	color: #323336;
+	font: bold 20px/50px "Arial";
+}
+ul,li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#mean_nav li {
+	width: 200px;
+	height: 50px;
+	border: 1px dashed #232327;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#mean_nav li:hover {
+	border: none;
+}
+#mean_nav a:hover {
+	margin-bottom: 17px;
+	color: #fff;
+}
+#section1 {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: relative;
+	overflow: hidden;
+}
+/*--------------------------------section1-----------------------------*/
+#section2 {
+	width: 100%;
+	height: 100%;
+	background: #241725;
+	display: none;
+	position: relative;
+	margin: 0 auto;
+	transition: .8s;
+}
+#separador {
+	position: absolute;
+	left: 45px;
+	top: -23px;
+	opacity: .8;
+}
+#float {
+	position: relative;
+	width: 550px;
+	left: 30%;
+	top: 30%;
+	transform-style: preserve-3d;
+	perspective: 800px;
+}
+#float img {
+	width: 500px;
+	height: 300px;
+	transition: .6s;
+	perspective-origin: center center center;
+}
+#float li img{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+/*--------------------------------section2--------------------------------------*/
+
+#section3 {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: absolute;
+	z-index: 5;
+}
+#section3 img{
+	width: 100%;
+	height: 100%;
+}
+	#shuoming {
+		position: absolute;
+		font: 18px/20px "微软雅黑";
+		color: #fff;
+		left: 200px;
+	}
+/*----------------------------------section3---------------------------------------*/
+
+</style>
+</head>
+<body>
+<img src="Zimgs/bio-texto.jpg" id="topimg">
+<div id="star">
+	<div id="loading">
+		<img src="Zimgs/drgon1.png" id="loaddrgon"/>
+	</div>
+</div>
+<!-- ................................star................................ -->
+<div id="section1">
+	<div id="mean">
+		<a href="javascript:;">
+			<img src="Zimgs/icono-menu.jpg"/>
+		</a>
+	</div>
+	<div id="mean_nav">
+		<ul>
+			<li><a href="sina/index.html">sina开放平台官网</a></li>
+			<li><a href="html5-ball-pool/index.html">小球效果</a></li>
+			<li><a href="app/index.html">bilibili(移动端)</a></li>
+			<li><a href="Response/index.html">Response(响应式)</a></li>
+			<li><a href="yitongdai/index.html">易通贷官网</a></li>
+			<li><a href="VR/index.html">VR最新技术</a></li>
+			<li><a href="table/index-table.html">win7桌面</a></li>
+		</ul>
+	</div>
+	<nav id="sidenav">
+		<a href="https://zh759897854.github.io/Personal-blog/">
+			<img src="Zimgs/sideimg.png"/>
+		</a>
+	</nav>
+	<div id="scorlldown">
+		<img src="Zimgs/scroll.png"/>
+	</div>
+</div>
+<!-- ...............................section1............................... -->
+<div id="section2">
+	<img src="Zimgs/separador.png" id="separador"/>
+	<ul id="float">
+		<li>
+			<img src="Zimgs/name.png">
+		</li>
+		<li>
+			<img src="Zimgs/name.png">
+		</li>
+		<li>
+			<img src="Zimgs/name.png">
+		</li>
+		<li>
+			<img src="Zimgs/name.png">
+		</li>
+		<li>
+			<img src="Zimgs/name.png">
+		</li>
+	</ul>
+</div>
+<!-- ...............................section2............................... -->
+<div id="section3">
+	<img src="Zimgs/music.jpg">
+</div>
+
+
+<!-- ...............................section3............................... -->
+<!--________________________________________script_____________________________________  -->
+<script src="miaov.js"></script>
+<script>
+var star = document.getElementById('star'),
+	loading = document.getElementById('loading'),
+	loaddrgon = document.getElementById('loaddrgon'),
+	section1 = document.getElementById('section1'),
+	section2 = document.getElementById('section2'),
+	section3 = document.getElementById('section3'),
+	topimg = document.getElementById('topimg'),
+	timer1 = 0,
+	timer2 = 0,
+	arr = ["Zimgs/drgon2.png","Zimgs/drgon1.png"];
+	tab = true;
+	topimg.style.display = "none";
+timer1 = setTimeout(function() {
+	clearTimeout(timer1);
+	clearInterval(timer2);
+	timer2 = setInterval(function() {
+		if(loading.style.width == 600 + "px") {
+			clearInterval(timer2);
+			star.style.display = "none";
+			section1.style.display = "block";
+			section2.style.display = "block";
+			section3.style.display = "block";
+		}
+		if(tab == true ) {
+			loaddrgon.src =  arr[0];
+		}else {
+			loaddrgon.src =  arr[1];
+		}
+		tab = !tab;
+	},1000)
+	mTween(loading,{width: 600},1000,"linear");
+	mTween(loaddrgon,{left: 575},1000,"linear");
+},1000); 
+// ----------------------------------------------------------------star
+
+var scorlldown = document.getElementById('scorlldown'),
+	mean_nav = document.getElementById('mean_nav'),
+	mean = document.getElementById('mean'),
+	timer3 = 0,
+	tab1 = true;
+clearInterval(timer3);
+timer3 = setInterval(function() {
+	mTween(scorlldown,{opacity: 30},700,"linear",function() {
+		mTween(scorlldown,{opacity: 100},700,"linear")
+	})
+},1700);
+mean.onclick = function() {
+	if(tab1 == true) {
+		mTween(mean_nav,{left: 0},500,"linear");
+	}else {
+		mTween(mean_nav,{left: -200},500,"linear");
+	}
+	tab1 = !tab1;
+};
+// ------------------------------------------------------------------------section2
+
+var	float = document.getElementById('float'),
+	flimgs = float.getElementsByTagName('img');
+	flnub = 0;
+window.onscroll = function() {
+	if(window.pageYOffset > 673) {
+		css3d(section2,"scale",.95);
+		topimg.style.display = "block";
+		mTween(section2,{opacity: 80},1000,"linear");
+		// section2.style.position = "fixed";
+		// section2.style.top = 10 + "px";
+	}else if(window.pageYOffset < 673) {
+		section2.style.position = "relative";
+		css3d(section2,"scale",1);
+	}
+}
+for(var i = 0; i < flimgs.length; i++) {
+	flnub = flnub+3;
+	flimgs[i].style.top = flnub + "px";
+	flimgs[i].style.left = flnub + "px";
+}
+var sx = 0,
+	sy = 0;
+float.onmousemove = function(e) {
+	var x = float.offsetLeft + float.clientWidth/2,
+		y = float.offsetTop + float.clientHeight/2,
+		X = e.pageX,
+		Y = e.pageY - section1.clientHeight - float.clientHeight-120;
+		if(x < X) {
+			sx = parseInt((X - x)/20)
+		}else {
+			sx = -parseInt((x - X)/20)
+		}
+		if(y < Y) {
+			sy = parseInt((Y - y)/20)
+		}else {
+			sy = -parseInt((y - Y)/20)
+		}
+	for(var i = 0; i < flimgs.length; i++) {
+		css3d(flimgs[i],"rotateY",sy);
+		css3d(flimgs[i],"rotateX",sx)
+	}
+} 
+</script>
+</body>
+</html>
