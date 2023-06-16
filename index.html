@@ -9,7 +9,7 @@
 </head>
 <style>
     * {
-        margin: 0;`
+        margin: 0;
         padding: 0;
     }
     #shadow-layer {
@@ -35,6 +35,7 @@
         box-shadow: 0 0 0 50rem rgba(0, 0, 0, 0.7); // 外层阴影
     }
     #capture-rectangle img {
+        background: transparent;
         position: absolute;
         display: block;
         width: 4rem;
@@ -103,6 +104,8 @@
         document.getElementById('shadow-layer').style.display = 'block'
         document.getElementById('photo').style.display = 'block'
         document.getElementById('start').style.display = 'none'
+        const video = document.getElementById('video');
+        getUserMediaStream(video)
     }
 
     //访问用户媒体设备的兼容方法
@@ -148,8 +151,7 @@
             // video: { facingMode: { exact: 'environment', width: 1280, height: 720 } },
         }).then(res => {
             return success(res, videoNode);
-        })
-            .catch(error => {
+        }).catch(error => {
                 console.log('访问用户媒体设备失败：', error.name, error.message);
                 return Promise.reject();
             });
@@ -177,22 +179,14 @@
 
     /** 裁切上传相关核心代码  */
     const Photo = () => {
-        let videoHeight = 0;
         const video = document.getElementById('video');
         const rectangle = document.getElementById('capture-rectangle');
         const _canvas = document.createElement('canvas');
         _canvas.style.display = 'block';
-
-        getUserMediaStream(video)
-            .then(() => {
-                videoHeight = video.offsetHeight;
-                startCapture();
-            })
-            .catch(err => {
-                alert('无法调起后置摄像头，请点击相册，手动上传身份证')
-            });
+        let videoHeight = video.offsetHeight;
 
 
+        startCapture();
         function startCapture() {
             // setInterval(() => {
                 const { yRatio, xRatio } = getXYRatio();
