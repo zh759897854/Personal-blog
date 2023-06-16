@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <style>
-    * {
+    *,body {
         margin: 0;
         padding: 0;
     }
@@ -63,6 +63,10 @@
     }
 
     #start {
+        position: fixed;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
         width: 150px;
         height: 50px;
         background: #999999;
@@ -71,6 +75,7 @@
         line-height: 50px;
         color: #fff;
         font-weight: 600;
+        z-index: 102;
     }
 
 </style>
