@@ -172,6 +172,22 @@
                 return Promise.reject();
             });
     }
+    function getXYRatio() {
+        // videoHeight为video 真实高度
+        // offsetHeight为video css高度
+        const video = document.getElementById('video');
+        debugger
+        const { videoHeight: vh, videoWidth: vw, offsetHeight: oh, offsetWidth: ow } = video;
+
+        return {
+            yRatio: height => {
+                return (vh / oh) * height;
+            },
+            xRatio: width => {
+                return (vw / ow) * width;
+            },
+        };
+    }
 
     /** 裁切上传相关核心代码  */
     const Photo = () => {
@@ -183,8 +199,10 @@
 
         startCapture();
         function startCapture() {
+            const { yRatio, xRatio } = getXYRatio();
             /** 获取裁切框的位置 */
             const { left, top, width, height } = rectangle.getBoundingClientRect();
+            console.log(left, top, width, height)
 
             const context = _canvas.getContext('2d');
             _canvas.width = width;
@@ -193,10 +211,10 @@
             // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
             context.drawImage(
                 video,
-                left,
-                top,
-                width,
-                height,
+                xRatio(left + window.scrollX),
+                yRatio(top + window.scrollY),
+                xRatio(width),
+                yRatio(height),
                 0,
                 0,
                 width,
@@ -206,6 +224,7 @@
             // 获取当前截图的base64编码
             const base64 = _canvas.toDataURL('image/jpeg');
             alert(base64)
+            console.log(base64)
             // 这里可以再根据场景做base64压缩
         }
     }
