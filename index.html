@@ -178,8 +178,7 @@
         const video = document.getElementById('video');
         const rectangle = document.getElementById('capture-rectangle');
         const _canvas = document.getElementById('canvas');
-        // const _canvas = document.createElement('canvas');
-        // _canvas.style.display = 'block';
+        _canvas.style.display = 'block';
 
 
         startCapture();
@@ -206,7 +205,7 @@
 
             // 获取当前截图的base64编码
             const base64 = _canvas.toDataURL('image/jpeg');
-            console.log(base64)
+            alert(base64)
             // 这里可以再根据场景做base64压缩
         }
     }
