@@ -12,10 +12,6 @@
         margin: 0;
         padding: 0;
     }
-    body {
-        height: 100vh;
-        overflow: hidden;
-    }
     #shadow-layer {
         display: none;
         position: absolute;
@@ -90,7 +86,7 @@
 </div>
 <div id="shadow-layer">
     <div id="capture-rectangle">
-        <img src="./icon.png" alt="">
+<!--        <img src="./icon.png" alt="">-->
     </div>
 </div>
 <video
@@ -176,7 +172,6 @@
         // videoHeight为video 真实高度
         // offsetHeight为video css高度
         const video = document.getElementById('video');
-        debugger
         const { videoHeight: vh, videoWidth: vw, offsetHeight: oh, offsetWidth: ow } = video;
 
         return {
