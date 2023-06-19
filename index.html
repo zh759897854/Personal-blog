@@ -19,7 +19,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 1;
+        z-index: 100;
         overflow: hidden;
     }
     #capture-rectangle {
@@ -103,7 +103,9 @@
         autoPlay
         muted
         playsInline
-        style="width: 100%;height: 100vh">
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowfullscreen="true">
 </video>
 <canvas id="canvas"></canvas>
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
