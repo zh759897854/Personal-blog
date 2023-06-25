@@ -11,25 +11,31 @@
             padding: 0;
             margin: 0;
         }
+        #video-wrapper {
+            width: 100%;
+            height: 100vh;
+            background: #e3e3e3;
+            opacity: 0.2;
+        }
         #video {
             object-fit: fill;
-            position: fixed;
-            top: 0;
-            left: 0;
         }
     </style>
 </head>
 <body>
-<video
-        id="video"
-        autoPlay
-        muted
-        playsInline
-        style="width: 100%;"
-        webkitallowfullscreen="true"
-        mozallowfullscreen="true"
-        allowfullscreen="true">
-</video>
+<div id="video-wrapper">
+    <video
+            id="video"
+            autoPlay
+            muted
+            playsInline
+            width="100%"
+            height="100%"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+            allowfullscreen="true">
+    </video>
+</div>
 <script>
     //访问用户媒体设备的兼容方法
     function getUserMedia(constrains) {
