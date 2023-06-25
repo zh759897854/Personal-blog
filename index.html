@@ -90,7 +90,8 @@
         changeFontSize()
         console.log('start')
     })(window, document)
-
+</script>
+<script>
     //访问用户媒体设备的兼容方法
     function getUserMedia(constrains) {
         if (navigator.mediaDevices?.getUserMedia) {
@@ -193,7 +194,6 @@
 
             // 获取当前截图的base64编码
             const base64 = _canvas.toDataURL('image/jpeg');
-            console.log(base64, '=====')
             let newImg = document.createElement('img')
             newImg.src = base64
             document.body.before(newImg)
