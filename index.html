@@ -7,129 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<style>
-    *,body {
-        margin: 0;
-        padding: 0;
-    }
-    #shadow-layer {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 100;
-        overflow: hidden;
-    }
-    #capture-rectangle {
-        position: absolute;
-        top: 6rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 16rem;
-        height: 10rem;
-        border: 2px solid #e6f7ff;
-        border-radius: 0.3rem;
-        z-index: 2;
-        background: transparent;
-        box-shadow: 0 0 0 50rem rgba(0, 0, 0, 0.7); // 外层阴影
-    }
-    #capture-rectangle img {
-        background: transparent;
-        position: absolute;
-        display: block;
-        width: 4rem;
-        top: 1rem;
-        right: 1rem;
-    }
-    #photo {
-        display: none;
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 2rem;
-        width: 2rem;
-        height: 2rem;
-        border: 5px solid #fff;
-        border-radius: 100%;
-        z-index: 108;
-    }
-    #photo div {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background: #fff;
-        opacity: 0.95;
-    }
-
-    #start {
-        position: fixed;
-        top: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150px;
-        height: 50px;
-        background: #999999;
-        border-radius: 10px;
-        text-align: center;
-        line-height: 50px;
-        color: #fff;
-        font-weight: 600;
-        z-index: 102;
-    }
-    #video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 90;
-    }
-
-</style>
 <body>
-<div id="start" onclick="start()">点击开始拍照</div>
-<div id="photo" onclick="Photo()">
-    <div></div>
-</div>
-<div id="shadow-layer">
-    <div id="capture-rectangle">
-        <img src="./icon.png" alt="">
-    </div>
-</div>
 <video
         id="video"
         autoPlay
         muted
         playsInline
+        style="width: 100%;height: 100%"
         webkitallowfullscreen="true"
         mozallowfullscreen="true"
         allowfullscreen="true">
 </video>
-<canvas id="canvas"></canvas>
-<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
-    // VConsole 默认会挂载到 `window.VConsole` 上
-    const vConsole = new window.VConsole();
-
-    (function(win, doc) {
-        let wid = null;
-        function changeFontSize() {
-            wid = doc.documentElement.clientWidth;
-            doc.documentElement.style.fontSize = wid / 19.2 + 'px'
-        }
-        changeFontSize()
-        console.log('start')
-    })(window, document)
-    function start() {
-        document.getElementById('shadow-layer').style.display = 'block'
-        document.getElementById('photo').style.display = 'block'
-        document.getElementById('start').style.display = 'none'
-
-        const video = document.getElementById('video');
-        getUserMediaStream(video)
-    }
-
     //访问用户媒体设备的兼容方法
     function getUserMedia(constrains) {
         if (navigator.mediaDevices?.getUserMedia) {
@@ -174,67 +63,13 @@
         }).then(res => {
             return success(res, videoNode);
         }).catch(error => {
-                console.log('访问用户媒体设备失败：', error.name, error.message);
-                return Promise.reject();
-            });
-    }
-    function getXYRatio() {
-        // videoHeight为video 真实高度
-        // offsetHeight为video css高度
-        const video = document.getElementById('video');
-        const { videoHeight: vh, videoWidth: vw, offsetHeight: oh, offsetWidth: ow } = video;
-
-        return {
-            yRatio: height => {
-                return (vh / oh) * height;
-            },
-            xRatio: width => {
-                return (vw / ow) * width;
-            },
-        };
+            console.log('访问用户媒体设备失败：', error.name, error.message);
+            return Promise.reject();
+        });
     }
 
-    /** 裁切上传相关核心代码  */
-    const Photo = () => {
-        const video = document.getElementById('video');
-        const rectangle = document.getElementById('capture-rectangle');
-        const _canvas = document.getElementById('canvas');
-        _canvas.style.display = 'block';
-
-
-        startCapture();
-        function startCapture() {
-            const { yRatio, xRatio } = getXYRatio();
-            /** 获取裁切框的位置 */
-            const { left, top, width, height } = rectangle.getBoundingClientRect();
-            console.log(left, top, width, height)
-
-            const context = _canvas.getContext('2d');
-            _canvas.width = width;
-            _canvas.height = height;
-
-            // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-            context.drawImage(
-                video,
-                xRatio(left + window.scrollX),
-                yRatio(top + window.scrollY),
-                xRatio(width),
-                yRatio(height),
-                0,
-                0,
-                width,
-                height,
-            );
-
-            // 获取当前截图的base64编码
-            const base64 = _canvas.toDataURL('image/jpeg');
-            alert(base64)
-            let newImg = document.createElement('img')
-            newImg.src = base64
-            document.body.appendChild(newImg)
-            // 这里可以再根据场景做base64压缩
-        }
-    }
+    const videos = document.getElementById('video')
+    getUserMediaStream(videos)
 </script>
 </body>
 </html>
