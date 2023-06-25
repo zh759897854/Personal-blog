@@ -141,8 +141,10 @@
         });
     }
 
-    const videos = document.getElementById('video')
-    getUserMediaStream(videos)
+    setTimeout(function() {
+        const videos = document.getElementById('video')
+        getUserMediaStream(videos)
+    }, 1000)
 
     function getXYRatio() {
         // videoHeight为video 真实高度
