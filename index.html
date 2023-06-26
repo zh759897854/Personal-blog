@@ -81,6 +81,17 @@
     // VConsole 默认会挂载到 `window.VConsole` 上
     const vConsole = new window.VConsole();
 
+    function isWechat(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/micromessenger/i) == 'micromessenger' && (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) ){
+            console.log('当前是ios 微信内置浏览器')
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    isWechat()
     (function(win, doc) {
         let wid = null;
         function changeFontSize() {
@@ -88,7 +99,6 @@
             doc.documentElement.style.fontSize = wid / 19.2 + 'px'
         }
         changeFontSize()
-        console.log('start')
     })(window, document)
 </script>
 <script>
