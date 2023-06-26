@@ -34,8 +34,10 @@
   }
 
   // 遍历所有的设备，包括视频和音频设备,找到摄像头
-  function gotDevices(deviceInfos) {
-    console.log(deviceInfos);
+  function gotDevices(devices) {
+    devices.forEach(function(device) {
+      console.log(device, device.kind + ':' + device.label + 'id=' + device.deviceId, '====')
+    })
   }
 
   function handleError(error) {
