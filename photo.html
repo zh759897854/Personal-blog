@@ -56,7 +56,12 @@
         });*/
     });
   }
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+  navigator.mediaDevices.enumerateDevices()
+          .then(function(devices) {
+            devices.forEach(function(device) {
+              console.log(device, device.kind + ':' + device.label + 'id=' + device.deviceId, '====')
+            })
+          });
 </script>
 
 </html>
