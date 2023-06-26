@@ -77,7 +77,7 @@
     }
   }
   navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
-    let mediaDevice = mediaDevices[mediaDevices.length - 1]
+    let mediaDevice = mediaDevices[0]
     if (typeof currentStream !== 'undefined') {
       stopMediaTracks(currentStream);
     }
