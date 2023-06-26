@@ -5,26 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>摄像头切换</title>
-
+  <title>调用摄像头</title>
 </head>
 
 <body>
-
-<header>
-  <h1>调用摄像头</h1>
-</header>
-
-<main>
-  <div id="controls">
-  </div>
-  <video id="videodemo" autoplay playsinline></video><br>
-  <button id="stopCamera">关闭摄像头</button>
-</main>
+  <main>
+    <div id="controls"></div>
+    <video id="video" autoplay muted playsinline></video><br>
+    <button id="stopCamera">关闭摄像头</button>
+  </main>
 </body>
+<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
+  const vConsole = new window.VConsole();
   // 根据id获取video元素
-  const video = document.getElementById('videodemo');
+  const video = document.getElementById('video');
   // 根据id获取button元素
   const button = document.getElementById('button');
   // 定义一个变量，用来存储音视频流，在切换摄像头和关闭摄像头时用
@@ -42,7 +37,7 @@
     // 获取到controls元素是为了方便往里面添加可用的摄像头按钮
     const controls = document.getElementById('controls');
     // 循环为了方便在第二次点击摄像头按钮再次获取设备数量时将已存在的设备数量清空
-    for(var i=0;i<controls.children.length;i++){
+    for(let i=0;i<controls.children.length;i++){
       console.log(controls.children[i])
       controls.children[i].remove();
     }
@@ -53,7 +48,7 @@
       if (mediaDevice.kind === 'videoinput') {
         controls.value = mediaDevice.deviceId;//deviceId是摄像头的id字符串，我们切换摄像头的时候用到
         const label = mediaDevice.label || `Camera ${count++}`;
-        var button = document.createElement("button");
+        let button = document.createElement("button");
         button.innerHTML = label
         button.addEventListener('click', function (ev) {
           console.log(mediaDevice.deviceId)
@@ -64,7 +59,7 @@
           videoConstraints.deviceId = { exact: mediaDevice.deviceId };
           const constraints = {
             video: videoConstraints,
-            audio: true
+            audio: false
           };
           navigator.mediaDevices
                   .getUserMedia(constraints)
