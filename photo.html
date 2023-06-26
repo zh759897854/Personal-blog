@@ -76,7 +76,30 @@
       }
     }
   }
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+  navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
+    let mediaDevice = mediaDevices[mediaDevices.length - 1]
+    if (typeof currentStream !== 'undefined') {
+      stopMediaTracks(currentStream);
+    }
+    const videoConstraints = {};
+    videoConstraints.deviceId = { exact: mediaDevice.deviceId };
+    const constraints = {
+      video: videoConstraints,
+      audio: false
+    };
+    navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then(stream => {
+              currentStream = stream;
+              video.srcObject = stream;
+            })
+            .then((res) => {
+              console.log(res, 'success')
+            })
+            .catch(error => {
+              console.error(error);
+            });
+  });
 
 </script>
 
