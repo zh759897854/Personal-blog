@@ -17,7 +17,11 @@
 
 <main>
   <div id="controls"></div>
-  <video id="videodemo" autoplay playsinline></video>
+  <video id="videodemo"
+         muted
+         autoplay
+         playsinline>
+  </video>
 </main>
 </body>
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
@@ -43,7 +47,7 @@
     mediaDevices.forEach(mediaDevice => {
       // if判断是为了将摄像头设备遍历出来，使用videoinput判断（videoinput是摄像头设备）
       if (mediaDevice.kind === 'videoinput') {
-        console.log(mediaDevice, mediaDevice.deviceId)
+        console.log(mediaDevice, mediaDevice.label)
 
           if (typeof currentStream !== 'undefined') {
             stopMediaTracks(currentStream);
@@ -52,7 +56,7 @@
           videoConstraints.deviceId = { exact: mediaDevice.deviceId };
           const constraints = {
             video: videoConstraints,
-            audio: true
+            audio: false
           };
           navigator.mediaDevices
                   .getUserMedia(constraints)
