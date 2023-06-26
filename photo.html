@@ -43,6 +43,7 @@
 
   // 此方法是获取到可用的设备数量（包括可用的音频数量和摄像头数量）
   function gotDevices(mediaDevices) {
+    console.log(mediaDevices, 'mediaDevices')
     // mediaDevices是获取到的可用设备数量（包括音频设备和摄像头设备）
     mediaDevices.forEach((mediaDevice, index) => {
       // if判断是为了将摄像头设备遍历出来，使用videoinput判断（videoinput是摄像头设备）
