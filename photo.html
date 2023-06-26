@@ -16,6 +16,9 @@
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
   const vConsole = new window.VConsole();
+  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+    console.log('enumerateDevices() not supported');
+  }
   // 根据id获取video元素
   const video = document.getElementById('video');
   // 定义一个变量，用来存储视频流
