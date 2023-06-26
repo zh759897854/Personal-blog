@@ -9,81 +9,50 @@
 </head>
 
 <body>
-  <main>
-    <div id="controls"></div>
-    <video id="video" autoplay muted playsinline></video><br>
-    <button id="stopCamera">关闭摄像头</button>
-  </main>
+<main>
+  <div id="controls"></div>
+  <video id="video" autoplay muted playsinline></video><br>
+</main>
 </body>
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
   const vConsole = new window.VConsole();
   // 根据id获取video元素
   const video = document.getElementById('video');
-  // 根据id获取button元素
-  const button = document.getElementById('button');
-  // 定义一个变量，用来存储音视频流，在切换摄像头和关闭摄像头时用
+  // 定义一个变量，用来存储视频流
   let currentStream;
 
-  // 此函数是为了关闭摄像头流
-  function stopMediaTracks(stream) {
-    stream.getTracks().forEach(track => {
-      track.stop();
-    });
-  }
-
-  // 此方法是获取到可用的设备数量（包括可用的音频数量和摄像头数量）
+  // 此方法是获取到可用的设备数量（包括可用的摄像头数量）
   function gotDevices(mediaDevices) {
-    // 获取到controls元素是为了方便往里面添加可用的摄像头按钮
-    const controls = document.getElementById('controls');
-    // 循环为了方便在第二次点击摄像头按钮再次获取设备数量时将已存在的设备数量清空
-    for(let i=0;i<controls.children.length;i++){
-      console.log(controls.children[i])
-      controls.children[i].remove();
-    }
     let count = 1;
     // mediaDevices是获取到的可用设备数量（包括音频设备和摄像头设备）
     mediaDevices.forEach(mediaDevice => {
       // if判断是为了将摄像头设备遍历出来，使用videoinput判断（videoinput是摄像头设备）
       if (mediaDevice.kind === 'videoinput') {
-        controls.value = mediaDevice.deviceId;//deviceId是摄像头的id字符串，我们切换摄像头的时候用到
-        const label = mediaDevice.label || `Camera ${count++}`;
-        let button = document.createElement("button");
-        button.innerHTML = label
-        button.addEventListener('click', function (ev) {
-          console.log(mediaDevice.deviceId)
-          if (typeof currentStream !== 'undefined') {
-            stopMediaTracks(currentStream);
-          }
-          const videoConstraints = {};
-          videoConstraints.deviceId = { exact: mediaDevice.deviceId };
-          const constraints = {
-            video: videoConstraints,
-            audio: false
-          };
-          navigator.mediaDevices
-                  .getUserMedia(constraints)
-                  .then(stream => {
-                    currentStream = stream;
-                    video.srcObject = stream;
-                    return navigator.mediaDevices.enumerateDevices();
-                  })
-                  .then(gotDevices)
-                  .catch(error => {
-                    console.error(error);
-                  });
-        })
-        controls.appendChild(button);
+        console.log(mediaDevice, '====')
+        // 清除所有的视频流
+       /* if (typeof currentStream !== 'undefined') {
+          currentStream.getTracks().forEach(track => {
+            track.stop();
+          });
+        }
+        const videoConstraints = {};
+        videoConstraints.deviceId = { exact: mediaDevice.deviceId };
+        const constraints = {
+          video: videoConstraints,
+          audio: false
+        };
+        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+          currentStream = stream;
+          video.srcObject = stream;
+          return navigator.mediaDevices.enumerateDevices();
+        }).then(gotDevices).catch(error => {
+          console.error(error);
+        });*/
       }
     });
   }
   navigator.mediaDevices.enumerateDevices().then(gotDevices);
-  const stopButton = document.getElementById('stopCamera')
-  stopButton.addEventListener('click', function (ev) {
-    if (typeof currentStream !== 'undefined') {
-      stopMediaTracks(currentStream);
-    }
-  })
 </script>
 
 </html>
