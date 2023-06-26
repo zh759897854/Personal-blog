@@ -61,7 +61,9 @@
                     video.srcObject = stream;
                     return navigator.mediaDevices.enumerateDevices();
                   })
-                  .then(gotDevices)
+                  .then(() => {
+                    console.log('success')
+                  })
                   .catch(error => {
                     console.error(error);
                   });
