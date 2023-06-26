@@ -128,9 +128,9 @@
 <script>
     var ua = window.navigator.userAgent.toLowerCase();
     if(ua.match(/micromessenger/i) == 'micromessenger' && (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) ){
-        console.log('当前是ios 微信内置浏览器')
-        document.getElementById('video-wrapper').remove()
-        document.getElementById('video-wrapper').style.display = 'block'
+        console.log('当前是ios 微信内置浏览器， 需要用自带safari')
+        document.getElementById('video-wrapper').style.display = 'none'
+        document.getElementById('notSupport').style.display = 'block'
 
     } else {
         //访问用户媒体设备的兼容方法
