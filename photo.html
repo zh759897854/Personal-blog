@@ -45,35 +45,36 @@
   function gotDevices(mediaDevices) {
     console.log(mediaDevices, 'mediaDevices')
     // mediaDevices是获取到的可用设备数量（包括音频设备和摄像头设备）
-    mediaDevices.forEach((mediaDevice, index) => {
-      // if判断是为了将摄像头设备遍历出来，使用videoinput判断（videoinput是摄像头设备）
-      if (mediaDevice.kind === 'videoinput' && index === mediaDevices.length - 1) {
+    if (mediaDevices && mediaDevices.length > 1) {
+      const mediaDevice = mediaDevices[mediaDevices.length - 1]
+      if (mediaDevice.kind === 'videoinput') {
         console.log(mediaDevice, mediaDevice.label)
 
-          if (typeof currentStream !== 'undefined') {
-            stopMediaTracks(currentStream);
-          }
-          const videoConstraints = {};
-          videoConstraints.deviceId = { exact: mediaDevice.deviceId };
-          const constraints = {
-            video: videoConstraints,
-            audio: false
-          };
-          navigator.mediaDevices
-                  .getUserMedia(constraints)
-                  .then(stream => {
-                    currentStream = stream;
-                    video.srcObject = stream;
-                    return navigator.mediaDevices.enumerateDevices();
-                  })
-                  .then(() => {
-                    console.log('success')
-                  })
-                  .catch(error => {
-                    console.error(error);
-                  });
+        if (typeof currentStream !== 'undefined') {
+          stopMediaTracks(currentStream);
+        }
+        const videoConstraints = {};
+        videoConstraints.deviceId = { exact: mediaDevice.deviceId };
+        const constraints = {
+          video: videoConstraints,
+          audio: false
+        };
+        navigator.mediaDevices
+                .getUserMedia(constraints)
+                .then(stream => {
+                  currentStream = stream;
+                  video.srcObject = stream;
+                })
+                .then(() => {
+                  console.log('success')
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+      } else {
+        alert('媒体调起失败')
       }
-    });
+    }
   }
   navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
