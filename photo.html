@@ -10,68 +10,14 @@
 
 <body>
 <main>
+  <input type="file" accept="video/*" capture="camera">
+  <div id="controls"></div>
   <video id="video" autoplay muted playsinline></video><br>
 </main>
 </body>
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
   const vConsole = new window.VConsole();
-
-  if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
-    //调用用户媒体设备, 访问摄像头
-    getUserMedia({video: {width: 480, height: 320}}, ()=> {
-      console.log('get video success')
-    }, error);
-  } else {
-    alert('不支持访问用户媒体');
-  }
-
-  if(!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-    console.log('menumerateDevices is not supported!');
-  }else {
-    navigator.mediaDevices.enumerateDevices()
-            .then(gotDevices).catch(handleError);
-  }
-
-  // 遍历所有的设备，包括视频和音频设备,找到摄像头
-  function gotDevices(devices) {
-    devices.forEach(function(device) {
-      console.log(device, device.kind + ':' + device.label + 'id=' + device.deviceId, '====')
-    })
-  }
-
-  function handleError(error) {
-    console.log('Error: ', error);
-  }
-
-
-
-  //访问用户媒体设备的兼容方法
-  function getUserMedia(constraints, success, error) {
-    if (navigator.mediaDevices.getUserMedia) {
-      //最新的标准API
-      navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
-    } else if (navigator.webkitGetUserMedia) {
-      //webkit核心浏览器
-      navigator.webkitGetUserMedia(constraints, success, error)
-    } else if (navigator.mozGetUserMedia) {
-      //firfox浏览器
-      navigator.mozGetUserMedia(constraints, success, error);
-    } else if (navigator.getUserMedia) {
-      //旧版API
-      navigator.getUserMedia(constraints, success, error);
-    }
-  }
-  function error(error) {
-    console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
-  }
-
-</script>
-<!--<script>
-  const vConsole = new window.VConsole();
-  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-    console.log('enumerateDevices() not supported');
-  }
   // 根据id获取video元素
   const video = document.getElementById('video');
   // 定义一个变量，用来存储视频流
@@ -80,21 +26,22 @@
   // 此方法是获取到可用的设备数量（包括可用的摄像头数量）
   function gotDevices(mediaDevices) {
     // mediaDevices是获取到的可用设备数量（包括音频设备和摄像头设备）
-    console.log(mediaDevices, '-&#45;&#45;&#45;&#45;')
-    if (!mediaDevices) {
+    console.log(mediaDevices, '-----')
+    if (mediaDevices) {
       console.log('访问用户媒体设备失败：');
       return false;
     }
     mediaDevices.forEach(mediaDevice => {
       // if判断是为了将摄像头设备遍历出来，使用videoinput判断（videoinput是摄像头设备）
-        console.dir(mediaDevice.label, '====')
+      if (mediaDevice.kind === 'videoinput' && mediaDevice.deviceId === 'environment') {
+        console.log(mediaDevice.deviceId, '====')
         // 清除所有的视频流
-        /*if (typeof currentStream !== 'undefined') {
+        if (typeof currentStream !== 'undefined') {
           currentStream.getTracks().forEach(track => {
             track.stop();
           });
-        }*/
-        /*const videoConstraints = {};
+        }
+        const videoConstraints = {};
         videoConstraints.deviceId = { exact: mediaDevice.deviceId };
         const constraints = {
           video: videoConstraints,
@@ -106,15 +53,11 @@
           return navigator.mediaDevices.enumerateDevices();
         }).then(gotDevices).catch(error => {
           console.error(error);
-        });*/
+        });
+      }
     });
   }
-  navigator.mediaDevices.enumerateDevices()
-          .then(function(devices) {
-            devices.forEach(function(device) {
-              console.log(device, device.kind + ':' + device.label + 'id=' + device.deviceId, '====')
-            })
-          });
-</script>-->
+  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+</script>
 
 </html>
