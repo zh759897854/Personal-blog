@@ -26,7 +26,7 @@
   function gotDevices(mediaDevices) {
     // mediaDevices是获取到的可用设备数量（包括音频设备和摄像头设备）
     console.log(mediaDevices, '-----')
-    if (mediaDevices) {
+    if (!mediaDevices) {
       console.log('访问用户媒体设备失败：');
       return false;
     }
